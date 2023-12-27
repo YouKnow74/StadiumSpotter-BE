@@ -1,0 +1,27 @@
+{
+  "name": "stadiumspotter-be",
+  "version": "1.0.0",
+  "description": "Back end code for StadiumSpotter application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YouKnow74/StadiumSpotter-BE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YouKnow74/StadiumSpotter-BE/issues"
+  },
+  "homepage": "https://github.com/YouKnow74/StadiumSpotter-BE#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3"
+  }
+}
