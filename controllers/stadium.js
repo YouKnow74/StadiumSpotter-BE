@@ -55,7 +55,7 @@ exports.stadium_edit_get = (req, res) => {
 }
 
 exports.stadium_update_put = (req, res) => {
-    Stadium.findByIdAndUpdate(req.body._id, req.bod, {new: true})
+    Stadium.findByIdAndUpdate(req.body._id, req.body, {new: true})
     .then((stadium) => {
         res.json({stadium})
     })
