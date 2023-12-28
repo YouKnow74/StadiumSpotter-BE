@@ -22,6 +22,6 @@ const stadiumSchema = mongoose.Schema({
     timestamps: true
 })
 
-const Stadium = mongoose.model("Stadium", stadiumSchema)
+const Stadium = mongoose.model("Stadium", stadiumSchema, 'stadium')
 
 module.exports = {Stadium}

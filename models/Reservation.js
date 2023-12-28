@@ -7,11 +7,11 @@ const reservationSchema = mongoose.Schema({
     Status: String,
     price: Number,
     user: {
-        type: mongoose.Schema.type.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     stadium: {
-        type: mongoose.Schema.type.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Stadium'
     }
 },{
