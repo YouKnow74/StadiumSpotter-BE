@@ -40,8 +40,8 @@ exports.facility_edit_get = (req, res) => {
     .catch(err => console.log(err))
 }
 
-exports.facility_update_post = (req, res) => {
-    console.log(req.body.id);
+exports.facility_update_put = (req, res) => {
+    console.log(req.body._id);
     Facility.findByIdAndUpdate(req.body._id, req.body, {new: true})
     .then((facility) => {
         res.json({facility})
