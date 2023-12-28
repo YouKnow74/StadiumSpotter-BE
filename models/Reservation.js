@@ -18,6 +18,6 @@ const reservationSchema = mongoose.Schema({
     timestamps: true
 })
 
-const Reservetion = mongoose.model("Reservation", reservationSchema)
+const Reservation = mongoose.model("Reservation", reservationSchema)
 
-module.exports = {Reservetion}
+module.exports = {Reservation}
