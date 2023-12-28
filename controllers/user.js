@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 //number of rounds to do the hashing more number means more security
  const salt = 10;
 
-exports.auth_signup_post =(req ,res) => {
+exports.user_signup_post =(req ,res) => {
     let user = new User(req.body);
     let hash = bcrypt.hashSync(req.body.password , salt);
     console.log(hash);
@@ -21,7 +21,7 @@ exports.auth_signup_post =(req ,res) => {
         res.json({"message": err.message })
     })
 }
-exports.auth_signin_post = async (req, res) =>{
+exports.user_signin_post = async (req, res) =>{
     let {emailAddress , password} = req.body;
     console.log(emailAddress);
     try{
