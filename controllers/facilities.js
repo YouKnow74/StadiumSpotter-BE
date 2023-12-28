@@ -40,7 +40,7 @@ exports.facility_edit_get = (req, res) => {
     .catch(err => console.log(err))
 }
 
-exports.facility_update_post = (req, res) => {
+exports.facility_update_put = (req, res) => {
     console.log(req.body.id);
     Facility.findByIdAndUpdate(req.body._id, req.body, {new: true})
     .then((facility) => {
