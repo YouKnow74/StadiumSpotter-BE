@@ -31,7 +31,8 @@ const userSchema = mongoose.Schema({
     type:String,
     required:true,
     minlength:[6 , "Your Password is too weak!!!"]
- }
+ },
+ image: String
 },
 {
 timestamps:true

@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 
 const SportsSchema = mongoose.Schema({
     category: String,
+    image: String,
     stadium: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Studium'
+      ref: 'Stadium'
     }],
   }, {
     timestamps: true
