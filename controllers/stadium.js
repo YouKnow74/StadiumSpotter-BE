@@ -1,5 +1,6 @@
 const {Stadium} = require("../models/Stadium")
 const { Facility } = require("../models/Facilities")
+const {Sport} = require("../models/Sport")
 
 exports.stadium_create_post = (req, res) => {
     console.log(req.body)
@@ -24,7 +25,7 @@ exports.stadium_create_post = (req, res) => {
 }
 
 exports.stadium_index_get = (req, res) => {
-    Stadium.find()
+    Stadium.find().populate('facilities').populate("category")
     .then((stadium) => {
         res.json({stadium})
     })
@@ -45,7 +46,7 @@ exports.stadium_delete_get = (req, res) => {
 }
 
 exports.stadium_edit_get = (req, res) => {
-    Stadium.findById(req.query.id)
+    Stadium.findById(req.query.id).populate('facilities').populate("category")
     .then((stadium) => {
         res.json({stadium})
     })
@@ -62,4 +63,16 @@ exports.stadium_update_put = (req, res) => {
     .catch(err => {
         console.log(err);
     })
+}
+
+exports.stadium_create_get =(req,res)=>{
+    Sport.find()
+    .then((sports)=>{
+        res.json({sports})
+    })
+    .catch(err=>{
+        console.log("error bringing list of sports");
+        console.log(err);
+    })
+
 }

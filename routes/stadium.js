@@ -6,7 +6,7 @@ router.use(express.json());
 const stadiumCtrl = require("../controllers/stadium");
 
 //Routes
-// router.get("/add",stadiumCtrl.stadium_create_get);
+router.get("/add",stadiumCtrl.stadium_create_get);
 router.post("/add",stadiumCtrl.stadium_create_post);
 router.get("/index",stadiumCtrl.stadium_index_get);
 // router.get("/detail",stadiumCtrl.stadium_show_get);

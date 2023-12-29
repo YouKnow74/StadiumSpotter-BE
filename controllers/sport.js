@@ -1,4 +1,4 @@
-const {Sport} = require("../models/Sports")
+const {Sport} = require("../models/Sport")
 
 exports.sport_create_post = (req,res) => {
     console.log(req.body);
@@ -24,8 +24,8 @@ exports.sport_index_get = (req, res) => {
   
   }
 exports.sport_delete_get = (req, res) => {
-    console.log(req.query.id);
-    Sport.findByIdAndDelete(req.query.id)
+    console.log(req.query._id);
+    Sport.findByIdAndDelete(req.query._id)
     .then((sport) => {
       // res.redirect("/author/index");
       res.json({sport})
