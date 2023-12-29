@@ -63,3 +63,71 @@ exports.user_signin_post = async (req, res) =>{
         res.json({"message": "You are not loggedIn!!!"}).status(400);
       }
 }
+// exports.user_create_get=(req,res) =>{
+//     res.render('user/add');
+// }
+// exports.user_create_post=(req,res)=>{
+//     let user = new User(req.body);
+//     user.save()
+//     .then(()=>{
+//         res.redirect('/user/index')
+//     })
+//     .catch(err=>{
+//         console.log(err);
+//     })
+// }
+//get all useres in the system
+exports.user_index_get=(req,res) =>{
+    User.find()
+    .then(alluser=>{
+        res.json({alluser})
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
+// render one user information in page
+exports.user_show_get=(req,res) =>{
+    User.findById(req.query.id)
+    .then(userDetail=>{
+        res.json({userDetail})
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
+// render one user information to be edited in page
+exports.user_edit_get=(req,res) =>{
+    User.findById(req.query.id)
+    .then(editUser=>{
+        res.json({editUser})
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
+//delete user
+exports.user_delete_get=(req,res)=>{
+    User.findByIdAndDelete(req.query.id)
+    .then((userDeleted)=>{
+        res.json({userDeleted});
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
+// update user info
+exports.user_update_put=(req,res)=>{
+    console.log(req.body._id);
+    // if there is an image upload
+    if(req.file){
+    req.body.avatar = "/images/"+req.file.filename;
+    }
+    User.findByIdAndUpdate(req.body._id,req.body)
+    .then((userUpdate)=>{
+        res.json({userUpdate});
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
