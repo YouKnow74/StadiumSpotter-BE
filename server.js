@@ -31,7 +31,7 @@ app.use('/facility',facilityRouter)
 app.use('/reservation',reservationRouter)
 // app.use('/sport',sportRouter)
 app.use('/stadium',stadiumRouter)
-// app.use('/user',userRouter) 
+app.use('/user',userRouter) 
 
 
 
