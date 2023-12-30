@@ -1,9 +1,18 @@
 const mongoose = require("mongoose")
 
 const reservationSchema = mongoose.Schema({
-    date: Date,
-    startTime: String,
-    endTime: String,
+    date: {
+        type: Date,
+        required: true
+    },
+    startTime: {
+        type: String,
+        required: true
+    },
+    endTime: {
+        type: String,
+        required: true
+    },
     Status: String,
     price: Number,
     user: {
