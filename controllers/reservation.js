@@ -1,4 +1,5 @@
-const {Reservation} = require("../models/Reservation")
+const {Reservation} = require("../models/Reservation");
+const {Stadium} =require("../models/Stadium");
 
 exports.reservation_create_post = (req, res) => {
     console.log(req.body);
@@ -6,7 +7,17 @@ exports.reservation_create_post = (req, res) => {
 
     reservation.save()
     .then((reservation) => {
-        res.json({reservation})
+        Stadium.findById(req.body.stadium)
+        .then(stadium=>{
+            console.log("caught stadium");
+            console.log(res);
+            res.json({reservation,stadium})
+        })
+        .catch(err=>{
+            console.log("error bringing stadium");
+            console.log(err);
+        })
+       
     })
     .catch(err => {
         console.log(err);
