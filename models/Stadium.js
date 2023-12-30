@@ -6,6 +6,7 @@ const stadiumSchema = mongoose.Schema({
     descriptin: String,
     size: String,
     location: String,
+    price:Number,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
