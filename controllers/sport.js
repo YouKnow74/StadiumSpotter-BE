@@ -13,7 +13,7 @@ exports.sport_create_post = (req,res) => {
       })
 }
 exports.sport_index_get = (req, res) => {
-    Sport.find()
+    Sport.find().populate('stadium')
     .then((Sports) => {
       // res.render("author/index", {authors, dayjs});
       res.json({ Sports })
