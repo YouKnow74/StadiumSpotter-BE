@@ -216,9 +216,4 @@ These HTTP methods are used in combination with URLs (endpoints) to perform vari
 
 - **[Git Team Workflow](https://trello.com/invite/stadiumspotter/ATTIb079db0c886353646c04bf9c6612f24e0062057C)**
 - **[MongooseJS documentation](https://mongoosejs.com/docs/index.html)**
--**[Mongoose web application databas link:mongodb+srv://Hussain:2qWcV0dri9YcdbAg@cluster0.j0qrk0d.mongodb.net/StadiumSpotter?       retryWrites=true&w=majority]
-     PORT=3011
-     SECRET=HelloTeamMembers85452222
-
-
 
