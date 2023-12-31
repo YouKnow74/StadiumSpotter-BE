@@ -35,7 +35,7 @@ exports.reservation_create_post = (req, res) => {
 }
 
 exports.reservation_index_get = (req, res) => {
-    Reservation.find()
+    Reservation.find().populate("user")
     .then((reservation) => {
         res.json({reservation})
     })
