@@ -1,6 +1,14 @@
 const {Reservation} = require("../models/Reservation");
 const {Stadium} =require("../models/Stadium");
 
+exports.reservation_create_get = (req, res) => {
+    Stadium.findById(req.query.id)
+    .then((stadium) => {
+        res.json({stadium})
+    })
+    .catch(err => console.log(err))
+}
+
 exports.reservation_create_post = (req, res) => {
     console.log(req.body);
     let reservation = new Reservation(req.body)

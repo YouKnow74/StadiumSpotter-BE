@@ -6,6 +6,7 @@ router.use(express.json());
 const reservationCtrl = require('../controllers/reservation');
 
 //Routes
+router.get("/add", reservationCtrl.reservation_create_get)
 router.post("/add", reservationCtrl.reservation_create_post)
 router.get("/index", reservationCtrl.reservation_index_get)
 router.delete("/delete", reservationCtrl.reservation_delete_get)
