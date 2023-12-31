@@ -7,8 +7,14 @@ const jwt = require('jsonwebtoken')
  const salt = 10;
 
 exports.user_signup_post =(req ,res) => {
-    let user = new User(req.body);
-    let hash = bcrypt.hashSync(req.body.password , salt);
+    console.log("user",JSON.parse(req.body.user));
+    let user = new User(JSON.parse(req.body.user));
+    if(req.file)
+    user.image = req.file.filename;
+    else
+    user.image = "def-user.jpg";
+
+    let hash = bcrypt.hashSync(user.password , salt);
     console.log(hash);
 
     user.password = hash;
@@ -90,6 +96,7 @@ exports.user_index_get=(req,res) =>{
 exports.user_show_get=(req,res) =>{
     User.findById(req.query.id)
     .then(userDetail=>{
+        userDetail.password=null;
         res.json({userDetail})
     })
     .catch(err=>{

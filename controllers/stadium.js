@@ -3,8 +3,16 @@ const { Facility } = require("../models/Facilities")
 const {Sport} = require("../models/Sport")
 
 exports.stadium_create_post = (req, res) => {
-    console.log(req.body)
-    let stadium = new Stadium(req.body)
+    // stadium dat is json string in FE must convert to object here
+    console.log(JSON.parse(req.body.stadium)) 
+    console.log("Hello?");
+    // console.log(req.body.image.name);
+    console.log(req.file);
+    let stadium = new Stadium(JSON.parse(req.body.stadium));
+    if(req.file)
+    stadium.image = req.file.filename;
+    else
+    stadium.image = "def-stadium.jpg";
     stadium.save()
     .then((stadiumData) => {
         // req.body.facilities.forEach(facility => {
