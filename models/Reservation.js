@@ -22,6 +22,9 @@ const reservationSchema = mongoose.Schema({
     stadium: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Stadium'
+    },
+    stadiumName :{
+        type: String
     }
 },{
     timestamps: true

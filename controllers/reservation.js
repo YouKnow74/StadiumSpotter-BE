@@ -1,9 +1,11 @@
 const {Reservation} = require("../models/Reservation");
 const {Stadium} =require("../models/Stadium");
+const dayjs = require('dayjs');
 
 exports.reservation_create_get = (req, res) => {
     Stadium.findById(req.query.id)
     .then((stadium) => {
+        // stadium.dateFormatted = dayjs(stadium.date).format("yyyy-MM-dd")
         res.json({stadium})
     })
     .catch(err => console.log(err))
