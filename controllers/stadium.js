@@ -64,7 +64,13 @@ exports.stadium_edit_get = (req, res) => {
 }
 
 exports.stadium_update_put = (req, res) => {
-    Stadium.findByIdAndUpdate(req.body._id, req.body, {new: true})
+    console.log("reqbody",req.body.stadium);
+    const data = JSON.parse(req.body.stadium)
+    if(req.file)
+    data.image = req.file.filename;
+    else
+    data.image = data.image;
+    Stadium.findByIdAndUpdate(data._id, data, {new: true})
     .then((stadium) => {
         res.json({stadium})
     })

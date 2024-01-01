@@ -1,8 +1,14 @@
 const {Facility} = require("../models/Facilities")
 
 exports.facility_create_post = (req, res) => {
-    console.log(req.body)
-    let facility = new Facility(req.body)
+    console.log(req.file);
+    console.log(req.body.facility);
+    let facility = new Facility(JSON.parse(req.body.facility));
+
+    if(req.file)
+    facility.image = req.file.filename
+    else
+    facility.image = "def-facility.webp";
 
     facility.save()
     .then((facility) => {
@@ -42,9 +48,14 @@ exports.facility_edit_get = (req, res) => {
 
 exports.facility_update_put = (req, res) => {
 
-    console.log(req.body._id);
+    console.log(req.body.facility._id);
+    const data = JSON.parse(req.body.facility);
+    if(req.file)
+    data.image = req.file.filename;
+    else
+    data.image = data.image;
 
-    Facility.findByIdAndUpdate(req.body._id, req.body, {new: true})
+    Facility.findByIdAndUpdate(data._id, data, {new: true})
     .then((facility) => {
         res.json({facility})
     })
