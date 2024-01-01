@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage })
 
-router.post("/add",sportCtrl.sport_create_post);
+router.post("/add",upload.single('image'),sportCtrl.sport_create_post);
 router.get("/index",sportCtrl.sport_index_get);
 router.delete("/delete",sportCtrl.sport_delete_get);
 

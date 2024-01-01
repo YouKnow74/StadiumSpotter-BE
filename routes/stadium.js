@@ -3,6 +3,10 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 
+const isLogged=require('../config/isLoggedin');
+const isOwner=require('../config/isOwner');
+
+
 const stadiumCtrl = require("../controllers/stadium");
 
 //Multer 
@@ -21,10 +25,11 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage })
 
+
 //Routes
 router.get("/add",stadiumCtrl.stadium_create_get);
-router.post("/add",upload.single('image'),stadiumCtrl.stadium_create_post);
-router.get("/index",stadiumCtrl.stadium_index_get);
+router.post("/add",isOwner,upload.single('image'),stadiumCtrl.stadium_create_post);
+router.get("/index",isLogged,stadiumCtrl.stadium_index_get);
 // router.get("/detail",stadiumCtrl.stadium_show_get);
 router.delete("/delete",stadiumCtrl.stadium_delete_get);
 router.get("/edit",stadiumCtrl.stadium_edit_get);
