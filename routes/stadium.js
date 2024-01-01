@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
         let extArray = file.mimetype.split("/");
         let extension = extArray[extArray.length - 1];
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      cb(null, file.fieldname + '-' + uniqueSuffix + extension);
+      cb(null, file.fieldname + '-' + uniqueSuffix +"."+ extension);
     }
   })
   
@@ -28,7 +28,7 @@ router.get("/index",stadiumCtrl.stadium_index_get);
 // router.get("/detail",stadiumCtrl.stadium_show_get);
 router.delete("/delete",stadiumCtrl.stadium_delete_get);
 router.get("/edit",stadiumCtrl.stadium_edit_get);
-router.put("/update",stadiumCtrl.stadium_update_put);
+router.put("/update",upload.single('image'),stadiumCtrl.stadium_update_put);
 
 
 
