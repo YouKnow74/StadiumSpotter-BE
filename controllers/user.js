@@ -69,6 +69,7 @@ exports.user_signin_post = async (req, res) =>{
         res.json({"message": "You are not loggedIn!!!"}).status(400);
       }
 }
+
 // exports.user_create_get=(req,res) =>{
 //     res.render('user/add');
 // }
@@ -82,6 +83,7 @@ exports.user_signin_post = async (req, res) =>{
 //         console.log(err);
 //     })
 // }
+
 //get all useres in the system
 exports.user_index_get=(req,res) =>{
     User.find()
@@ -130,11 +132,23 @@ exports.user_update_put=(req,res)=>{
     if(req.file){
     req.body.avatar = "/images/"+req.file.filename;
     }
-    User.findByIdAndUpdate(req.body._id,req.body)
+    User.findById(req.body._id)
+    .then(userToUpdate=>{
+    infoToUpdate = req.body;
+    
+    if(infoToUpdate.password == null)
+    infoToUpdate.password = userToUpdate.password;
+
+    User.findByIdAndUpdate(req.body._id,infoToUpdate)
     .then((userUpdate)=>{
         res.json({userUpdate});
     })
     .catch(err=>{
         console.log(err);
     })
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+    
 }

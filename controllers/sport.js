@@ -1,8 +1,12 @@
 const {Sport} = require("../models/Sport")
 
 exports.sport_create_post = (req,res) => {
-    console.log(req.body);
-    let sport = new Sport(req.body);
+    console.log(req.body.sport);
+    let sport = new Sport(JSON.parse(req.body.sport));
+    if(req.file)
+    sport.image = req.file.filename;
+    else
+    sport.image = "def-sport.webp";
     sport.save()
     .then(() => {
       res.json({sport})
