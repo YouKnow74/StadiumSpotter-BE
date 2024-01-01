@@ -24,7 +24,7 @@ module.exports= (req,res,next)=>{
         User.findById(req.user.id)
         .then(userInfo=>{
             console.log(userInfo.userName);
-            if (userInfo.role =="stadium owner" || userInfo.role=="admin") {
+            if (userInfo.role =="stadium owner" || userInfo.role=="Admin") {
                 console.log("User Role"+userInfo.role+"\nValid");
                 next();
             }

@@ -128,24 +128,26 @@ exports.user_delete_get=(req,res)=>{
 // update user info
 exports.user_update_put=(req,res)=>{
     console.log(req.body._id);
+    const data = JSON.parse(req.body.user)
     // if there is an image upload
-    if(req.file){
-    req.body.avatar = "/images/"+req.file.filename;
-    }
-    User.findById(req.body._id)
+    if(req.file)
+     data.image = req.file.filename;
+    else
+    data.image = data.image
+    User.findById(data._id)
     .then(userToUpdate=>{
-    infoToUpdate = req.body;
-    
-    if(infoToUpdate.password == null)
-    infoToUpdate.password = userToUpdate.password;
 
-    User.findByIdAndUpdate(req.body._id,infoToUpdate)
+    if(data.password == null)
+    data.password = userToUpdate.password;
+
+    User.findByIdAndUpdate(data._id,data)
     .then((userUpdate)=>{
         res.json({userUpdate});
     })
     .catch(err=>{
         console.log(err);
     })
+
     })
     .catch(err=>{
         console.log(err);
