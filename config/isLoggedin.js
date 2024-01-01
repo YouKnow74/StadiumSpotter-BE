@@ -2,12 +2,12 @@ const jwt =require("jsonwebtoken");
 
 require("dotenv").config();
 
-module.exports=(req,res,next)=>{
+module.exports= async (req,res,next)=>{
 
     let token ="";
-    let authorizationToken=req.header("Authorization");
+    let authorizationToken= await req.header("Authorization");
 
-    console.log(authorizationToken);
+    console.log("Token auth",authorizationToken);
     if(authorizationToken){
         token=authorizationToken.replace("Bearer ","");
         console.log(token);
@@ -17,7 +17,7 @@ module.exports=(req,res,next)=>{
     }
     try {
         const decoded = jwt.verify(token,process.env.SECRET);
-        
+
         req.user = decoded.user;
         next();
         

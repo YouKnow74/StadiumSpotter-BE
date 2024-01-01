@@ -32,9 +32,9 @@ router.post("/signin",userCtrl.user_signin_post);
 // router.post("/add",userCtrl.user_create_post);
 router.get("/index",isAdmin,userCtrl.user_index_get);
 router.get("/detail",isLoggedin,userCtrl.user_show_get);
-router.get("/edit",isAdmin,userCtrl.user_edit_get);
+router.get("/edit",isLoggedin,userCtrl.user_edit_get);
 router.delete("/delete",isAdmin,userCtrl.user_delete_get);
-router.put("/update",isLoggedin,userCtrl.user_update_put);
+router.put("/update",upload.single('image'),isLoggedin,userCtrl.user_update_put);
 
 //export
 module.exports = router;
