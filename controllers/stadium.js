@@ -1,6 +1,7 @@
 const {Stadium} = require("../models/Stadium")
 const { Facility } = require("../models/Facilities")
 const {Sport} = require("../models/Sport")
+const {User} = require("../models/User")
 
 exports.stadium_create_post = (req, res) => {
     // stadium dat is json string in FE must convert to object here
@@ -53,6 +54,16 @@ exports.stadium_delete_get = (req, res) => {
     })
 }
 
+exports.stadium_show_get = (req, res) => {
+    Stadium.find({user: req.query.id}).populate('facilities').populate("category")
+    .then(stadiums => {
+        res.json({stadiums})
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
 exports.stadium_edit_get = (req, res) => {
     Stadium.findById(req.query.id).populate('facilities').populate("category")
     .then((stadium) => {
@@ -90,3 +101,4 @@ exports.stadium_create_get =(req,res)=>{
     })
 
 }
+

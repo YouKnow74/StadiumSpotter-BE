@@ -28,9 +28,9 @@ const storage = multer.diskStorage({
 
 //Routes
 router.get("/add",stadiumCtrl.stadium_create_get);
-router.post("/add",isOwner,upload.single('image'),stadiumCtrl.stadium_create_post);
-router.get("/index",isLoggedin,stadiumCtrl.stadium_index_get);
-// router.get("/detail",stadiumCtrl.stadium_show_get);
+router.post("/add",upload.single('image'),stadiumCtrl.stadium_create_post);
+router.get("/index",stadiumCtrl.stadium_index_get);
+router.get("/detail",stadiumCtrl.stadium_show_get);
 router.delete("/delete",stadiumCtrl.stadium_delete_get);
 router.get("/edit",stadiumCtrl.stadium_edit_get);
 router.put("/update",upload.single('image'),stadiumCtrl.stadium_update_put);
