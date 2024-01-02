@@ -35,9 +35,35 @@ exports.reservation_create_post = (req, res) => {
 }
 
 exports.reservation_index_get = (req, res) => {
-    Reservation.find().populate("user")
+    Reservation.find().populate("user").populate("stadium")
     .then((reservation) => {
         res.json({reservation})
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+exports.reservation_show_get = (req, res) => {
+    Reservation.find({user: req.query.id})
+    .then((reservstions) => {
+        res.json({reservstions})
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+exports.reservation_stadium_get =(req, res) => {
+    Stadium.find({user: req.query.id})
+    .then(stadium => {
+        Reservation.find({stadium: stadium._id})
+        .then(reservations=>{
+            res.json({reservations,stadium})
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     })
     .catch(err => {
         console.log(err);

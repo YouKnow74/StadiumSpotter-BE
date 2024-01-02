@@ -9,6 +9,8 @@ const reservationCtrl = require('../controllers/reservation');
 router.get("/add", reservationCtrl.reservation_create_get)
 router.post("/add", reservationCtrl.reservation_create_post)
 router.get("/index", reservationCtrl.reservation_index_get)
+router.get("/detail", reservationCtrl.reservation_show_get)
+router.get("/stadiumOwner", reservationCtrl.reservation_stadium_get)
 router.delete("/delete", reservationCtrl.reservation_delete_get)
 router.get("/edit", reservationCtrl.reservation_edit_get)
 router.put("/update", reservationCtrl.reservation_update_post)
