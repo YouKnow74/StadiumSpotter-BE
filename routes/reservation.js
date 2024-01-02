@@ -4,14 +4,15 @@ const router = express.Router();
 router.use(express.json());
 
 const reservationCtrl = require('../controllers/reservation');
+const isLoggedin = require('../config/isLoggedin');
 
 //Routes
-router.get("/add", reservationCtrl.reservation_create_get)
-router.post("/add", reservationCtrl.reservation_create_post)
-router.get("/index", reservationCtrl.reservation_index_get)
-router.delete("/delete", reservationCtrl.reservation_delete_get)
-router.get("/edit", reservationCtrl.reservation_edit_get)
-router.put("/update", reservationCtrl.reservation_update_post)
+router.get("/add",isLoggedin, reservationCtrl.reservation_create_get)
+router.post("/add",isLoggedin, reservationCtrl.reservation_create_post)
+router.get("/index",isLoggedin, reservationCtrl.reservation_index_get)
+router.delete("/delete",isLoggedin, reservationCtrl.reservation_delete_get)
+router.get("/edit",isLoggedin, reservationCtrl.reservation_edit_get)
+router.put("/update",isLoggedin, reservationCtrl.reservation_update_post)
 
 
 
