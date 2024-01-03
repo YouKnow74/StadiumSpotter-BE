@@ -55,7 +55,7 @@ exports.reservation_show_get = (req, res) => {
 }
 
 exports.reservation_stadium_get =(req, res) => {
-    Stadium.find({user: req.query.id})
+    Stadium.find({user: req.query.id}).populate('facilities').populate("category")
     .then(stadium => {
         res.json({stadium})
     })
@@ -97,7 +97,8 @@ exports.reservation_update_post = (req, res) => {
 }
 
 exports.reservation_reserved_get = (req,res)=>{
-    Reservation.find({stadium:req.query.id}).populate("user")
+
+    Reservation.find({stadium:req.query.id}).populate("user").populate("stadium")   
     .then(reserved=>{
         res.json({reserved})
     })
