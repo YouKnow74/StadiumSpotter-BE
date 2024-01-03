@@ -57,13 +57,7 @@ exports.reservation_show_get = (req, res) => {
 exports.reservation_stadium_get =(req, res) => {
     Stadium.find({user: req.query.id})
     .then(stadium => {
-        Reservation.find({stadium: stadium._id})
-        .then(reservations=>{
-            res.json({reservations,stadium})
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+        res.json({stadium})
     })
     .catch(err => {
         console.log(err);
