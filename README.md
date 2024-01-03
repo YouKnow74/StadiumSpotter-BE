@@ -29,7 +29,9 @@ Back end code for StadiumSpotter application
 
 <img src="/images/ourteam.png" alt="Team Seven">
 
+## Landing Page of the project:
 
+<img src="/images/landingpage.png" alt="Home Page">
 
 ## Requirements
 
