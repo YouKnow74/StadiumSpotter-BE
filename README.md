@@ -7,8 +7,8 @@ Back end code for StadiumSpotter application
 ### Developers & Collaborators Team
 
 ### Hussain Zuhair
-### Samia Jamal
 ### Kawthar Mahfoodh
+### Samia Jamal
 ### Rajiah A Rasool
 
 ## ERD StadiumSpotter

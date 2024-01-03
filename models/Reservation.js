@@ -1,9 +1,18 @@
 const mongoose = require("mongoose")
 
 const reservationSchema = mongoose.Schema({
-    date: Date,
-    startTime: String,
-    endTime: String,
+    date: {
+        type: Date,
+        required: true
+    },
+    startTime: {
+        type: String,
+        required: true
+    },
+    endTime: {
+        type: String,
+        required: true
+    },
     Status: String,
     price: Number,
     user: {
@@ -13,11 +22,14 @@ const reservationSchema = mongoose.Schema({
     stadium: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Stadium'
+    },
+    stadiumName :{
+        type: String
     }
 },{
     timestamps: true
 })
 
-const Reservetion = mongoose.model("Reservation", reservationSchema)
+const Reservation = mongoose.model("Reservation", reservationSchema)
 
-module.exports = {Reservetion}
+module.exports = {Reservation}

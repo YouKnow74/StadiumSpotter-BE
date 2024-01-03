@@ -1,8 +1,12 @@
-const {Sport} = require("../models/Sports")
+const {Sport} = require("../models/Sport")
 
 exports.sport_create_post = (req,res) => {
-    console.log(req.body);
-    let sport = new Sport(req.body);
+    console.log(req.body.sport);
+    let sport = new Sport(JSON.parse(req.body.sport));
+    if(req.file)
+    sport.image = req.file.filename;
+    else
+    sport.image = "def-sport.webp";
     sport.save()
     .then(() => {
       res.json({sport})
@@ -13,7 +17,7 @@ exports.sport_create_post = (req,res) => {
       })
 }
 exports.sport_index_get = (req, res) => {
-    Sport.find()
+    Sport.find().populate('stadium')
     .then((Sports) => {
       // res.render("author/index", {authors, dayjs});
       res.json({ Sports })
@@ -24,8 +28,8 @@ exports.sport_index_get = (req, res) => {
   
   }
 exports.sport_delete_get = (req, res) => {
-    console.log(req.query.id);
-    Sport.findByIdAndDelete(req.query.id)
+    console.log(req.query._id);
+    Sport.findByIdAndDelete(req.query._id)
     .then((sport) => {
       // res.redirect("/author/index");
       res.json({sport})

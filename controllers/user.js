@@ -1,5 +1,5 @@
 //RESTFUL API's for regestration and authentcation 
-const User =require('../models/User')
+const {User} =require('../models/User')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 
@@ -7,8 +7,14 @@ const jwt = require('jsonwebtoken')
  const salt = 10;
 
 exports.user_signup_post =(req ,res) => {
-    let user = new User(req.body);
-    let hash = bcrypt.hashSync(req.body.password , salt);
+    console.log("user",JSON.parse(req.body.user));
+    let user = new User(JSON.parse(req.body.user));
+    if(req.file)
+    user.image = req.file.filename;
+    else
+    user.image = "def-user.jpg";
+
+    let hash = bcrypt.hashSync(user.password , salt);
     console.log(hash);
 
     user.password = hash;
@@ -62,4 +68,89 @@ exports.user_signin_post = async (req, res) =>{
         console.log(err);
         res.json({"message": "You are not loggedIn!!!"}).status(400);
       }
+}
+
+// exports.user_create_get=(req,res) =>{
+//     res.render('user/add');
+// }
+// exports.user_create_post=(req,res)=>{
+//     let user = new User(req.body);
+//     user.save()
+//     .then(()=>{
+//         res.redirect('/user/index')
+//     })
+//     .catch(err=>{
+//         console.log(err);
+//     })
+// }
+
+//get all useres in the system
+exports.user_index_get=(req,res) =>{
+    User.find()
+    .then(alluser=>{
+        res.json({alluser})
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
+// render one user information in page
+exports.user_show_get=(req,res) =>{
+    User.findById(req.query.id)
+    .then(userDetail=>{
+        userDetail.password=null;
+        res.json({userDetail})
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
+// render one user information to be edited in page
+exports.user_edit_get=(req,res) =>{
+    User.findById(req.query.id)
+    .then(editUser=>{
+        res.json({editUser})
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
+//delete user
+exports.user_delete_get=(req,res)=>{
+    User.findByIdAndDelete(req.query.id)
+    .then((userDeleted)=>{
+        res.json({userDeleted});
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+}
+// update user info
+exports.user_update_put=(req,res)=>{
+    console.log(req.body._id);
+    const data = JSON.parse(req.body.user)
+    // if there is an image upload
+    if(req.file)
+     data.image = req.file.filename;
+    else
+    data.image = data.image
+    User.findById(data._id)
+    .then(userToUpdate=>{
+
+    if(data.password == null)
+    data.password = userToUpdate.password;
+
+    User.findByIdAndUpdate(data._id,data)
+    .then((userUpdate)=>{
+        res.json({userUpdate});
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+    
 }

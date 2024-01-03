@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 
 const stadiumSchema = mongoose.Schema({
     name: String,
-    image: String,
+    image:String,
     descriptin: String,
     size: String,
     location: String,
+    price:Number,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"

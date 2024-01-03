@@ -29,9 +29,9 @@ const userRouter = require("./routes/user");
 app.use('/facility',facilityRouter)
 // app.use('/payment',paymentRouter)
 app.use('/reservation',reservationRouter)
-// app.use('/sport',sportRouter)
+app.use('/sport',sportRouter)
 app.use('/stadium',stadiumRouter)
-// app.use('/user',userRouter) 
+app.use('/user',userRouter) 
 
 
 
