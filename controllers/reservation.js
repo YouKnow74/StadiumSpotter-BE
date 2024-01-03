@@ -97,7 +97,7 @@ exports.reservation_update_post = (req, res) => {
 }
 
 exports.reservation_reserved_get = (req,res)=>{
-    Reservation.find({stadium:req.query.id})
+    Reservation.find({stadium:req.query.id}).populate("user")
     .then(reserved=>{
         res.json({reserved})
     })
