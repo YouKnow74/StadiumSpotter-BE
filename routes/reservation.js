@@ -16,6 +16,7 @@ router.get("/detail", reservationCtrl.reservation_show_get)
 router.get("/stadiumOwner", reservationCtrl.reservation_stadium_get)
 router.get("/edit",isLoggedin, reservationCtrl.reservation_edit_get)
 router.put("/update",isLoggedin, reservationCtrl.reservation_update_post)
+router.get("/reserved",reservationCtrl.reservation_reserved_get)
 
 
 

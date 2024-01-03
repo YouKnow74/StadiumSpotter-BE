@@ -101,3 +101,15 @@ exports.reservation_update_post = (req, res) => {
         console.log(err);
     })
 }
+
+exports.reservation_reserved_get = (req,res)=>{
+    Reservation.find({stadium:req.query.id})
+    .then(reserved=>{
+        res.json({reserved})
+    })
+    .catch(err=>{
+        console.log("error fetching list of reserved");
+        console.log(err);
+    })
+
+}
