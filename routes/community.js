@@ -4,10 +4,8 @@ const router = express.Router();
 router.use(express.json());
 
 
-const facilityCtrl = require ("../controllers/facilities");
-
+const communityCtrl = require ("../controllers/communities");
 const isLoggedin=require('../config/isLoggedin');
-const isOwner=require('../config/isOwner');
 const isCustomer = require('../config/isCustomer');
 const isAdmin = require('../config/isAdmin');
 
@@ -28,12 +26,12 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage })
 
 //Routes
-router.post("/add",isAdmin,upload.single('image'),facilityCtrl.facility_create_post);
-router.get("/index",isLoggedin,facilityCtrl.facility_index_get);
-// router.get("/detail",facilityCtrl.facility_show_get);
-router.delete("/delete",isAdmin,facilityCtrl.facility_delete_get);
-router.get("/edit",isAdmin,facilityCtrl.facility_edit_get);
-router.put("/update",isAdmin,upload.single('image'),facilityCtrl.facility_update_put);
+router.post("/add",isAdmin,upload.single('image'),communityCtrl.community_create_post);
+router.get("/index",isLoggedin,communityCtrl.community_index_get);
+// router.get("/detail", communityCtrl.community_show_get);
+router.delete("/delete",isAdmin,communityCtrl.community_delete_get);
+router.get("/edit",isAdmin,communityCtrl.community_edit_get);
+router.put("/update",isAdmin,upload.single('image'),communityCtrl.community_update_put);
 
 
 module.exports = router;

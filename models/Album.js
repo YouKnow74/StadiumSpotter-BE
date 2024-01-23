@@ -1,18 +1,18 @@
 const mongoose = require('mongoose');
 
-const SportsSchema = mongoose.Schema({
+const AlbumsSchema = mongoose.Schema({
     category: String,
     image: String,
-    stadium: [{
+    album: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Stadium'
+      ref: 'Library'
     }],
   }, {
     timestamps: true
   });
   
   // Creating Model
-  const Sport = mongoose.model("Sport", SportsSchema);
+  const Album = mongoose.model("Album", AlbumsSchema);
   
   // Export
-  module.exports = {Sport};
+  module.exports = {Album};

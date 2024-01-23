@@ -1,30 +1,18 @@
 const mongoose = require("mongoose")
 
 const reservationSchema = mongoose.Schema({
-    date: {
-        type: Date,
-        required: true
-    },
-    startTime: {
-        type: String,
-        required: true
-    },
-    endTime: {
-        type: String,
-        required: true
-    },
+    date: Date,
+    startTime: String,
+    endTime: String,
     Status: String,
     price: Number,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    stadium: {
+    album: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Stadium'
-    },
-    stadiumName :{
-        type: String
+        ref: 'Album'
     }
 },{
     timestamps: true

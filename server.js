@@ -1,41 +1,35 @@
 // Dependencies
-// Load express
 const express = require('express');
-
-// Initialize express
-const app = express()
-
-// Require and initialize dotenv
 require('dotenv').config();
-
-// Port Configuration
-const port = process.env.PORT;
-
-// Nodejs to look for all the static file in public folder (CSS, JS, Audio, Videos, Images).
-app.use(express.static("public"));
-
-// Database Configuration
 const db = require("./config/db");
 
-//Import Routes (NEEDS TO BE ADDED)
-const facilityRouter = require("./routes/facility");
+const app = express();
+const port = process.env.PORT;
+
+// Middleware
+app.use(express.static("public"));
+
+// Routes
+const communityRouter = require("./routes/community");
 const paymentRouter = require("./routes/payment");
 const reservationRouter = require("./routes/reservation");
-const sportRouter = require("./routes/sport");
-const stadiumRouter = require("./routes/stadium");
+const albumRouter = require("./routes/album");
+const libraryRouter = require("./routes/library");
 const userRouter = require("./routes/user");
 
-//Mount Routes (NEEDS TO BE ADDED)
-app.use('/facility',facilityRouter)
-// app.use('/payment',paymentRouter)
-app.use('/reservation',reservationRouter)
-app.use('/sport',sportRouter)
-app.use('/stadium',stadiumRouter)
-app.use('/user',userRouter) 
+app.use('/community', communityRouter);
+app.use('/payment', paymentRouter);
+app.use('/reservation', reservationRouter);
+app.use('/album', albumRouter);
+app.use('/library', libraryRouter);
+app.use('/user', userRouter);
 
+// Homepage Route
+app.get('/', (req, res) => {
+  res.send('Welcome to the Music Box Library homepage!');
+});
 
-
-//connection 
+// Server Start
 app.listen(port, () => {
-    console.log(`Stadium Spotter is running on port ${port}`);
-  });
+  console.log(`Music Box Library is running on port ${port}`);
+});

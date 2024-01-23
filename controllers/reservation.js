@@ -1,12 +1,12 @@
 const {Reservation} = require("../models/Reservation");
-const {Stadium} =require("../models/Stadium");
+const {Library} =require("../models/Library");
 const dayjs = require('dayjs');
 
 exports.reservation_create_get = (req, res) => {
-    Stadium.findById(req.query.id)
-    .then((stadium) => {
-        // stadium.dateFormatted = dayjs(stadium.date).format("yyyy-MM-dd")
-        res.json({stadium})
+    Library.findById(req.query.id)
+    .then((library) => {
+        // library.dateFormatted = dayjs(library.date).format("yyyy-MM-dd")
+        res.json({library})
     })
     .catch(err => console.log(err))
 }
@@ -17,14 +17,14 @@ exports.reservation_create_post = (req, res) => {
 
     reservation.save()
     .then((reservation) => {
-        Stadium.findById(req.body.stadium)
-        .then(stadium=>{
-            console.log("caught stadium");
+        Library.findById(req.body.library)
+        .then(library=>{
+            console.log("caught library");
             console.log(res);
-            res.json({reservation,stadium})
+            res.json({reservation,library})
         })
         .catch(err=>{
-            console.log("error bringing stadium");
+            console.log("error bringing library");
             console.log(err);
         })
        
@@ -35,7 +35,7 @@ exports.reservation_create_post = (req, res) => {
 }
 
 exports.reservation_index_get = (req, res) => {
-    Reservation.find().populate("user").populate("stadium")
+    Reservation.find().populate("user").populate("library")
     .then((reservation) => {
         res.json({reservation})
     })
@@ -54,10 +54,10 @@ exports.reservation_show_get = (req, res) => {
     })
 }
 
-exports.reservation_stadium_get =(req, res) => {
-    Stadium.find({user: req.query.id})
-    .then(stadium => {
-        res.json({stadium})
+exports.reservation_library_get =(req, res) => {
+    Library.find({user: req.query.id})
+    .then(library => {
+        res.json({library})
     })
     .catch(err => {
         console.log(err);
@@ -97,7 +97,7 @@ exports.reservation_update_post = (req, res) => {
 }
 
 exports.reservation_reserved_get = (req,res)=>{
-    Reservation.find({stadium:req.query.id})
+    Reservation.find({library:req.query.id})
     .then(reserved=>{
         res.json({reserved})
     })

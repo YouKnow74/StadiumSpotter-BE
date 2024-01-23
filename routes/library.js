@@ -4,12 +4,11 @@ const router = express.Router();
 router.use(express.json());
 
 const isLoggedin=require('../config/isLoggedin');
-const isOwner=require('../config/isOwner');
 const isCustomer = require('../config/isCustomer');
 const isAdmin = require('../config/isAdmin');
 
 
-const stadiumCtrl = require("../controllers/stadium");
+const libraryCtrl = require("../controllers/library");
 
 //Multer 
 const multer = require("multer");
@@ -30,15 +29,10 @@ const storage = multer.diskStorage({
 
 //Routes
 
-router.get("/add",isOwner,stadiumCtrl.stadium_create_get);
-router.post("/add",isOwner,upload.single('image'),stadiumCtrl.stadium_create_post);
-router.get("/index",isLoggedin,stadiumCtrl.stadium_index_get);
-router.get("/detail",stadiumCtrl.stadium_show_get);
-router.delete("/delete",isOwner,stadiumCtrl.stadium_delete_get);
-router.get("/edit",isOwner,stadiumCtrl.stadium_edit_get);
-router.put("/update",isOwner,upload.single('image'),stadiumCtrl.stadium_update_put);
 
-
+router.get("/index", isLoggedin, libraryCtrl.library_index_get);
+router.get("/detail", libraryCtrl.library_show_get); // Changed from "library_show_get" to "library_detail_get"
+router.post("/add", isLoggedin, libraryCtrl.library_create_post);
 
 
 module.exports = router;

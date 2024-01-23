@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const stadiumSchema = mongoose.Schema({
+const librarySchema = mongoose.Schema({
     name: String,
     image:String,
     descriptin: String,
@@ -23,6 +23,6 @@ const stadiumSchema = mongoose.Schema({
     timestamps: true
 })
 
-const Stadium = mongoose.model("Stadium", stadiumSchema, 'stadium')
+const Library = mongoose.model("library", librarySchema, 'library')
 
-module.exports = {Stadium}
+module.exports = {Library}

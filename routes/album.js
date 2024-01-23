@@ -3,10 +3,9 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 
-const sportCtrl = require("../controllers/sport");
+const albumCtrl = require("../controllers/album");
 
 const isLoggedin=require('../config/isLoggedin');
-const isOwner=require('../config/isOwner');
 const isCustomer = require('../config/isCustomer');
 const isAdmin = require('../config/isAdmin');
 
@@ -26,9 +25,9 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage })
 
-router.post("/add",isAdmin,upload.single('image'),sportCtrl.sport_create_post);
-router.get("/index",sportCtrl.sport_index_get);
-router.delete("/delete",isAdmin,sportCtrl.sport_delete_get);
+router.post("/add",isAdmin,upload.single('image'),albumCtrl.album_create_post);
+router.get("/index",albumCtrl.album_index_get);
+router.delete("/delete",isAdmin,albumCtrl.album_delete_get);
 
 
 
